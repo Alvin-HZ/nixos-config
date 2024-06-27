@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     waybar
     swww
+    wofi
   ];
 
   #test later systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
@@ -37,7 +38,7 @@
 
     # Input config
     input {
-        kb_layout = br,us
+        kb_layout = us
         kb_variant =
         kb_model =
         kb_options =
@@ -109,11 +110,8 @@
     # Example windowrule v2
     # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
 
-    windowrule=float,^(kitty)$
     windowrule=float,^(pavucontrol)$
-    windowrule=center,^(kitty)$
     windowrule=float,^(blueman-manager)$
-    windowrule=size 600 500,^(kitty)$
     windowrule=size 934 525,^(mpv)$
     windowrule=float,^(mpv)$
     windowrule=center,^(mpv)$
@@ -128,16 +126,13 @@
     bind = $mainMod, B, exec, opera --no-sandbox
     bind = $mainMod, L, exec, firefox 
     bind = $mainMod, Q, killactive,
-    bind = $mainMod, M, exit,
-    bind = $mainMod, F, exec, nautilus
-    bind = $mainMod, V, togglefloating,
-    bind = $mainMod, w, exec, wofi --show drun
-    bind = $mainMod, R, exec, rofiWindow
-    bind = $mainMod, P, pseudo, # dwindle
-    bind = $mainMod, J, togglesplit, # dwindle
+    bind = $mainMod, BACKSPACE, exec, wlogout,
+    bind = $mainMod, E, exec, nautilus
+    bind = $mainMod, W, togglefloating,
+    bind = $mainMod, R, exec, wofi --show drun
+    # bind = $mainMod, R, exec, rofiWindow
 
     # Switch Keyboard Layouts
-    bind = $mainMod, SPACE, exec, hyprctl switchxkblayout teclado-gamer-husky-blizzard next
 
     bind = , Print, exec, grim -g "$(slurp)" - | wl-copy
     bind = SHIFT, Print, exec, grim -g "$(slurp)"

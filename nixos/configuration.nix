@@ -20,10 +20,10 @@
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
-    # X11 keymap
-    layout = "br";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   sound.enable = true;
@@ -49,8 +49,14 @@
     #PKG_CONFIG_PATH = lib.makeLibraryPath [ libevdev ];
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    libevdev
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    btop
+    git
   ];
 
   users.users.${userSettings.username} = {
@@ -76,10 +82,4 @@
   };
 
   system.stateVersion = "24.05";
-
-  #Flakes
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
 }

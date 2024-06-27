@@ -1,6 +1,6 @@
 { hyprland, pkgs, userSettings, ... }: {
   imports = [
-    ./alacritty
+    ./wlogout
     ./dunst
     ./hypr
     ./kitty
